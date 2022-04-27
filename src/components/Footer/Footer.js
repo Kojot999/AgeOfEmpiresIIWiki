@@ -8,7 +8,7 @@ function Footer() {
       <img alt="" src={FooterBackground} />
       <div>
         <h1>Encyklopedia Age of Empires II</h1>
-        <p>Przygotowana Przez Zespół EmesClick.com</p>
+        <p>Przygotowana Przez Zespół EmesClick.com RAFAŁ</p>
       </div>
     </div>
   );
