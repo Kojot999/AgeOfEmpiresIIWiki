@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  cursor: url("img/cursor.cur"), auto;
+}
+.Header {
+  width: 30vw;
+
+  height: 26vw;
+  position: relative;
+  z-index: 2;
+  border-radius: 30%;
+}
+.background {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+}
+body {
+  background-color: black;
+}
+a {
+  cursor: url("img/convert32x32.cur"), pointer;
+}
