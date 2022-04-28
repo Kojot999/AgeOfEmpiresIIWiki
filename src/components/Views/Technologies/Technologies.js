@@ -1,35 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Technologies.module.scss";
 import TechnologiesItem from "./TechnologiesItem/TechnologiesItem";
 
-class Technologies extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentlyOpenedUnit: null,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(id) {
-    if (this.state.currentlyOpenedUnit === id) {
-      this.setState({ currentlyOpenedUnit: null });
-    } else this.setState({ currentlyOpenedUnit: id });
-  }
+export const Technologies = ({ data }) => {
+  const [currentlyOpenedUnit, setCurrentlyOpenedUnit] = useState(null);
 
-  render() {
-    return (
-      <div className={styles.Technologies}>
-        {this.props.data.technologies.map((item) => (
-          <TechnologiesItem
-            isOpened={this.state.currentlyOpenedUnit === item.id}
-            {...item}
-            key={item.id}
-            action={this.handleClick}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+  const handleClick = (id) => {
+    if (currentlyOpenedUnit === id) {
+      setCurrentlyOpenedUnit(null);
+    } else setCurrentlyOpenedUnit(id);
+  };
 
-export default Technologies;
+  return (
+    <div className={styles.Technologies}>
+      {data.technologies.map((item) => (
+        <TechnologiesItem
+          isOpened={currentlyOpenedUnit === item.id}
+          {...item}
+          key={item.id}
+          action={handleClick}
+        />
+      ))}
+    </div>
+  );
+};

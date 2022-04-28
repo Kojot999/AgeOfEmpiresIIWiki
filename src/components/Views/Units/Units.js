@@ -1,35 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Units.module.scss";
 import UnitsItem from "./UnitsItem/UnitsItem";
 
-class Units extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentlyOpenedUnit: null,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(id) {
-    if (this.state.currentlyOpenedUnit === id) {
-      this.setState({ currentlyOpenedUnit: null });
-    } else this.setState({ currentlyOpenedUnit: id });
-  }
+export const Units = ({ data }) => {
+  const [currentlyOpenedUnit, setCurrentlyOpenedUnit] = useState(null);
 
-  render() {
-    return (
-      <div className={styles.Units}>
-        {this.props.data.units.map((item) => (
-          <UnitsItem
-            isOpened={this.state.currentlyOpenedUnit === item.id}
-            {...item}
-            key={item.id}
-            action={this.handleClick}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+  const handleClick = (id) => {
+    if (currentlyOpenedUnit === id) {
+      setCurrentlyOpenedUnit(null);
+    } else setCurrentlyOpenedUnit(id);
+  };
 
-export default Units;
+  return (
+    <div className={styles.Units}>
+      {data.units.map((item) => (
+        <UnitsItem
+          isOpened={currentlyOpenedUnit === item.id}
+          {...item}
+          key={item.id}
+          action={handleClick}
+        />
+      ))}
+    </div>
+  );
+};

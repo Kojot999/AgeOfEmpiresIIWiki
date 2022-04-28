@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import List from "./components/Views/List/List";
 import civilizations from "./data/civilizations.json";
 import structures from "./data/structures.json";
@@ -13,47 +13,44 @@ import {
   Routes,
   NavLink,
 } from "react-router-dom";
-import Civilizations from "./components/Views/Civilizations/Civilizations";
-import Structrues from "./components/Views/Structures/Structures";
-import Units from "./components/Views/Units/Units";
-import Technologies from "./components/Views/Technologies/Technologies";
+import { Civilizations } from "./components/Views/Civilizations/Civilizations";
+import { Structrues } from "./components/Views/Structures/Structures";
+import { Units } from "./components/Views/Units/Units";
+import { Technologies } from "./components/Views/Technologies/Technologies";
 import Button from "../src/components/BackButton/BackButton";
 
-class App extends React.Component {
-  state = {
-    data: { civilizations, structures, units, technologies },
-  };
+export const App = () => {
+  const [data] = useState({
+    civilizations,
+    structures,
+    units,
+    technologies,
+  });
 
-  render() {
-    return (
-      <div className="App">
-        <img alt="" className="background" src={background1}></img>
-        <Router className="Components">
-          <NavLink to="/" className="Header" />
-          <Routes>
-            <Route path="/" element={<List data={this.state.data} />} />
-            <Route
-              path="/structures"
-              element={<Structrues data={this.state.data.structures} />}
-            />
-            <Route
-              path="/civilizations"
-              element={<Civilizations data={this.state.data.civilizations} />}
-            />
-            <Route
-              path="/units"
-              element={<Units data={this.state.data.units} />}
-            />
-            <Route
-              path="/technologies"
-              element={<Technologies data={this.state.data.technologies} />}
-            />
-          </Routes>
-          <Button />
-        </Router>
-        <Footer />
-      </div>
-    );
-  }
-}
-export default App;
+  return (
+    <div className="App">
+      <img alt="" className="background" src={background1}></img>
+      <Router className="Components">
+        <NavLink to="/" className="Header" />
+        <Routes>
+          <Route path="/" element={<List data={data} />} />
+          <Route
+            path="/structures"
+            element={<Structrues data={data.structures} />}
+          />
+          <Route
+            path="/civilizations"
+            element={<Civilizations data={data.civilizations} />}
+          />
+          <Route path="/units" element={<Units data={data.units} />} />
+          <Route
+            path="/technologies"
+            element={<Technologies data={data.technologies} />}
+          />
+        </Routes>
+        <Button />
+      </Router>
+      <Footer />
+    </div>
+  );
+};

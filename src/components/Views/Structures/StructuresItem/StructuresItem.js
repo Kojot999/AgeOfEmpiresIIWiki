@@ -3,7 +3,7 @@ import styles from "./StructuresItem.module.scss";
 import { Collapse } from "react-collapse";
 import { ICON } from "../../../../constants/config";
 
-function StructuresItem({
+export const StructuresItem = ({
   name,
   isOpened,
   id,
@@ -12,7 +12,7 @@ function StructuresItem({
   hit_points,
   armor,
   cost,
-}) {
+}) => {
   return (
     <div className={styles.Item} onClick={() => action(id)}>
       <h2>{name}</h2>
@@ -37,5 +37,4 @@ function StructuresItem({
       </Collapse>
     </div>
   );
-}
-export default StructuresItem;
+};

@@ -1,35 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Civilizations.module.scss";
-import CivilizationsItem from "./CivilizationsItem/CivilizationsItem";
+import { CivilizationsItem } from "./CivilizationsItem/CivilizationsItem";
 
-class Civilizations extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentlyOpenedUnit: null,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(id) {
-    if (this.state.currentlyOpenedUnit === id) {
-      this.setState({ currentlyOpenedUnit: null });
-    } else this.setState({ currentlyOpenedUnit: id });
-  }
+export const Civilizations = ({ data }) => {
+  const [currentlyOpenedUnit, setCurrentlyOpenedUnit] = useState(null);
 
-  render() {
-    return (
-      <div className={styles.Civilizations}>
-        {this.props.data.civilizations.map((item) => (
-          <CivilizationsItem
-            isOpened={this.state.currentlyOpenedUnit === item.id}
-            {...item}
-            key={item.id}
-            action={this.handleClick}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+  const handleClick = (id) => {
+    if (currentlyOpenedUnit === id) {
+      setCurrentlyOpenedUnit(null);
+    } else setCurrentlyOpenedUnit(id);
+  };
 
-export default Civilizations;
+  return (
+    <div className={styles.Civilizations}>
+      {data.civilizations.map((item) => (
+        <CivilizationsItem
+          isOpened={currentlyOpenedUnit === item.id}
+          {...item}
+          key={item.id}
+          action={handleClick}
+        />
+      ))}
+    </div>
+  );
+};

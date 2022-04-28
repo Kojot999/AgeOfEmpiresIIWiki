@@ -2,14 +2,14 @@ import React from "react";
 import styles from "./CivilizationsItem.module.scss";
 import { Collapse } from "react-collapse";
 
-function CivilizationsItem({
+export const CivilizationsItem = ({
   name,
   isOpened,
   id,
   action,
   team_bonus,
   civilization_bonus,
-}) {
+}) => {
   return (
     <div className={styles.Item} onClick={() => action(id)}>
       <h2>{name}</h2>
@@ -25,5 +25,4 @@ function CivilizationsItem({
       </Collapse>
     </div>
   );
-}
-export default CivilizationsItem;
+};
