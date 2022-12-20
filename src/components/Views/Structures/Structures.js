@@ -13,7 +13,7 @@ export const Structrues = ({ data }) => {
 
   return (
     <div className={styles.Structrues}>
-      {data.structrues.map((item) => (
+      {data.structures.map((item) => (
         <StructuresItem
           isOpened={currentlyOpenedUnit === item.id}
           {...item}
